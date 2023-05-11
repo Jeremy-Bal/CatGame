@@ -1,5 +1,5 @@
 # catProject
-HI ! 
+Hello world ! This is my new game :hearts:
 
 ## Project setup
 ```
