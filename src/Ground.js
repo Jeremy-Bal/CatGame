@@ -1,4 +1,5 @@
 import { MeshReflectorMaterial, useTexture } from "@react-three/drei"
+import { RigidBody } from '@react-three/rapier'
 import { useControls } from "leva"
 import * as THREE from 'three'
 
@@ -90,10 +91,11 @@ export default function Ground()
         },
     })
     return <>
-        <group>
+        <RigidBody type={'fixed'}>
             {/* <pointLight intensity={10} color={'red'} /> */}
-            <mesh rotation={[- Math.PI * 0.5, 0, 0]} position={[0, -0.001, 5]}>
+            <mesh rotation={[- Math.PI * 0.5, 0, 0]} position={[0, -0.01, 5]}>
                 <planeGeometry args={[108, 101]} />
+                <meshBasicMaterial color={'black'}/>
                 <MeshReflectorMaterial
                     blur={[val.valBlur.x, val.valBlur.y]} // Blur ground reflections (width, heigt), 0 skips blur
                     {...props}
@@ -101,6 +103,6 @@ export default function Ground()
                     mirror={0} // Mirror environment, 0 = texture colors, 1 = pick up env colors
                 />
             </mesh>
-        </group>
+        </RigidBody>
     </>
 }
