@@ -93,8 +93,8 @@ export default function Ground()
     return <>
         <RigidBody type={'fixed'}>
             {/* <pointLight intensity={10} color={'red'} /> */}
-            <mesh rotation={[- Math.PI * 0.5, 0, 0]} position={[0, -0.01, 5]}>
-                <planeGeometry args={[108, 101]} />
+            <mesh rotation={[- Math.PI * 0.5, 0, 0]} position={[0, -0.5, 5]}>
+                <boxGeometry args={[108, 101, 1]} />
                 <meshBasicMaterial color={'black'}/>
                 <MeshReflectorMaterial
                     blur={[val.valBlur.x, val.valBlur.y]} // Blur ground reflections (width, heigt), 0 skips blur

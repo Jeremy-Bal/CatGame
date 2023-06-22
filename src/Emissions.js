@@ -25,15 +25,7 @@ export default function Emissions()
                  <meshBasicMaterial color={[0.2, 2.4, 2.0]} toneMapped={ false }/>
             </mesh>
             
-            <mesh geometry={nodes.greenEmission.geometry}>
-                 <meshBasicMaterial color={ [color[0], color[1], color[2]] } toneMapped={ false }/>
-            </mesh>
-            
             <mesh geometry={nodes.orangeEmission.geometry}>
-                 <meshBasicMaterial color={ [ 1.5, 1, 4 ] } toneMapped={ false }/>
-            </mesh>
-            
-            <mesh geometry={nodes.pinkEmission.geometry}>
                  <meshBasicMaterial color={ [ 1.5, 1, 4 ] } toneMapped={ false }/>
             </mesh>
             

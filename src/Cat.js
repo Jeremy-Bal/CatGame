@@ -30,8 +30,6 @@ export default function Cat()
         //This condition is used to simulate walk if user jump and hold  z || w
         if(currentAnimation === 'sautUp'){
             setTimeout(()=>{
-                console.log('marche', isCurrentRunning);
-
                 action.setLoop(LoopRepeat)
                 isCurrentRunning ? setCurrentAnimation('Course') : setCurrentAnimation('Marche') 
             }, 1200)
@@ -49,7 +47,7 @@ export default function Cat()
                 //RAYCAST used to know the distance from the floor
                 //set origin
                 const origin = catCollider.current.translation()
-                origin.y -= origin.y / 2
+                origin.y -= 0.51
                 //set raycast
                 const ray = new rapier.Ray(origin, direction)
                 //associate raycast with rapierWorld
@@ -58,17 +56,22 @@ export default function Cat()
                 //If user press any key
                 if(forward || leftward || rightward || backward || jump){
                     //If user jump
-                    if(jump && hit.toi < 0.15){
-                        setCurrentAnimation('sautUp')
-                        action.setLoop(LoopOnce)
+                    console.log('hit.toi', hit);
+                    if(jump){
+                        console.log('jump');
+                        if(hit && hit.toi < 0.15){
+                            console.log('in jump', hit.toi);
+                            setCurrentAnimation('sautUp')
+                            action.setLoop(LoopOnce)
 
-                        //impulse up
-                        catCollider.current.applyImpulse({ x: 0, y: 25, z:0 })
+                            //impulse up
+                            catCollider.current.applyImpulse({ x: 0, y: 25, z:0 })
+                        }
                     }
                     //or walking
                     if(forward || leftward || rightward || backward){
                         //if is not on the air
-                        if(hit.toi < 0.15){
+                        if(hit && hit.toi < 0.15){
                             //run or not
                             if(shift && currentAnimation != 'Course'){
                                 setCurrentAnimation('Course')
@@ -90,18 +93,33 @@ export default function Cat()
 
     }, [currentAnimation])
     
-    const { pos } = useControls('camera', {
+    const { pos, posCAT } = useControls('camera', {
         pos:{
             value:{
-                x: -4,
-                y: 6,
-                z: 12
+                x: -5,
+                y: 23,
+                z: 28
             },
-          /*   value:{
+           /*  value:{
+                x: 1,
+                y: 2,
+                z: 4
+            }, */
+            min: -100,
+            max: 100,
+            step: 1
+        },
+        posCAT:{
+            /* value:{
+                x: 10,
+                y: 1,
+                z: 0
+            }, */
+            value:{
                 x: -16,
                 y: 20,
                 z: 34
-            }, */
+            },
             min: -100,
             max: 100,
             step: 2
@@ -111,9 +129,9 @@ export default function Cat()
     //constantes used to catControl
     const eulerRotation = new Euler(0, 0, 0)
     const quaternionRotation = new Quaternion()
-    const lerpQuaternion = 0.2
-    // const catSpeed = 0.05
+    const lerpQuaternion = 0.1
     const catSpeed = 0.1
+    // const catSpeed = 0.07
 
     useFrame((state)=>{
         //Following camera
@@ -137,7 +155,7 @@ export default function Cat()
         if(forward || backward || leftward || rightward || shift)
         {
             const catTranslation = catCollider.current.translation()
-            const catRoation = catCollider.current.rotation()
+            const catRotation = catCollider.current.rotation()
            
             catCollider.current.lockRotations(true)
             if(forward)
@@ -147,16 +165,16 @@ export default function Cat()
                     eulerRotation.y = -Math.PI * 0.25
                     quaternionRotation.setFromEuler(eulerRotation)
                     
-                    catTranslation.x -= shift ? catSpeed * 1.5 : catSpeed * 1
-                    catTranslation.z += shift ? catSpeed * 1.5 : catSpeed * 1
+                    catTranslation.x -= shift ? catSpeed * 1.2 : catSpeed * 0.7
+                    catTranslation.z += shift ? catSpeed * 1.2 : catSpeed * 0.7
                 }
                 //forward and right
                 else if(rightward){
                     eulerRotation.y = -Math.PI * 0.75
                     quaternionRotation.setFromEuler(eulerRotation)
                     
-                    catTranslation.x -= shift ? catSpeed * 1.5 : catSpeed * 1
-                    catTranslation.z -= shift ? catSpeed * 1.5 : catSpeed * 1
+                    catTranslation.x -= shift ? catSpeed * 1.2 : catSpeed * 0.7
+                    catTranslation.z -= shift ? catSpeed * 1.2 : catSpeed * 0.7
                 }
                 //just forward
                 else{
@@ -174,8 +192,8 @@ export default function Cat()
                     eulerRotation.y = Math.PI * 0.25
                     quaternionRotation.setFromEuler(eulerRotation)
                     
-                    catTranslation.x += shift ? catSpeed * 1.5 : catSpeed * 1
-                    catTranslation.z += shift ? catSpeed * 1.5 : catSpeed * 1
+                    catTranslation.x += shift ? catSpeed * 1.2 : catSpeed * 0.7
+                    catTranslation.z += shift ? catSpeed * 1.2 : catSpeed * 0.7
                     
                 }
                 //backward and right
@@ -183,8 +201,8 @@ export default function Cat()
                     eulerRotation.y = Math.PI * 0.75
                     quaternionRotation.setFromEuler(eulerRotation)
                     
-                    catTranslation.x += shift ? catSpeed * 1.5 : catSpeed * 1
-                    catTranslation.z -= shift ? catSpeed * 1.5 : catSpeed * 1
+                    catTranslation.x += shift ? catSpeed * 1.2 : catSpeed * 0.7
+                    catTranslation.z -= shift ? catSpeed * 1.2 : catSpeed * 0.7
                 }
                 //just backward
                 else{
@@ -215,7 +233,7 @@ export default function Cat()
             }
 
             //set smoothed rotation after settting
-            const smoothedQuaternionRotation = catRoation.rotateTowards(quaternionRotation, lerpQuaternion)
+            const smoothedQuaternionRotation = catRotation.rotateTowards(quaternionRotation, lerpQuaternion)
             //and apply to catCollider
             catCollider.current.setRotation(smoothedQuaternionRotation)
 
@@ -230,7 +248,6 @@ export default function Cat()
             if(currentAnimation != 'Tpose' && currentAnimation != 'sautUp'){
                 setCurrentAnimation('Tpose')
                 action.setLoop(LoopRepeat)
-                console.log('reset');
             }
         }
 
@@ -239,16 +256,16 @@ export default function Cat()
     return <>
     <group>
         <RigidBody 
-            colliders={false} 
             ref={catCollider} 
-            position={[0, 1, -2]}
+            position={[-17.3, 4, -14]}
             mass={2}
             linearDamping={0.1}
             angularDamping={50.5}
+            colliders={false}
             >
 
-            <CuboidCollider args={[0.5, 1, 1.5]} position={[0, 1, -1.2]} />
-            <primitive object={modele.scene} scale={1} />
+            <CuboidCollider args={[0.2, 0.5, 0.7]} />
+            <primitive object={modele.scene} scale={0.6} position={[0, -0.49, 0.8]}/>
         </RigidBody>
         <RigidBody type='fixed' position={[0, 0, 0]} rotation={[0, 0, 0]} >
             <mesh>

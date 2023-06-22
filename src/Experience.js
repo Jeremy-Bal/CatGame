@@ -12,6 +12,7 @@ import Cat from './Cat'
 import Reflection from "./Reflection"
 
 import { Physics, Debug} from '@react-three/rapier'
+import Colliders from './Colliders'
 
 export default function Experience()
 {
@@ -34,13 +35,14 @@ export default function Experience()
                     <Physics gravity={[0, -20, 0]}>
                         {/* <Debug /> */}
                         <Cat />
+                        <Colliders />
                         <Modeles />
                         <Ground />
                     </Physics>
-                    <Effect />
+                    {/* <Effect /> */}
                     <Emissions />
                     <Lights />
-                    <Reflection />
+                    {/* <Reflection /> */}
                 </Suspense>
             </group>
         </Center>
