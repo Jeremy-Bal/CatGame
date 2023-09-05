@@ -1,10 +1,18 @@
-import { Bloom, EffectComposer } from "@react-three/postprocessing";
-
+import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
+import { BlendFunction } from 'postprocessing'
 export default function ()
 {
+
     return <>
         <EffectComposer>
-            <Bloom mipmapBlur intensity={2} luminanceThreshold={0.6} />
+            {/* <Bloom mipmapBlur intensity={1}  /> */}
+            <Vignette offset={0.8} 
+            darkness={0.8}
+            opacity={0.7}
+            resolutionX={1024 / 2}
+            resolutionY={1024 / 2}
+            blendFunction={BlendFunction.MULTIPLY}
+            />
         </EffectComposer>
     </>
 }

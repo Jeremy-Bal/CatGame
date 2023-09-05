@@ -1,19 +1,15 @@
-import { useRef } from "react";
-import { RigidBody, CuboidCollider, BallCollider } from '@react-three/rapier'
+import { RigidBody, CuboidCollider } from '@react-three/rapier'
 import { useControls } from "leva";
 
 
 export default function Colliders()
 {
-    const colliders = useRef()
-
-
     const { posCollider, transCollider, rotColliders } = useControls('collider', {
         posCollider:{
             value:{
-                x: 8.75,
+                x: -5.75,
                 y: 0.2,
-                z: -20.8
+                z: 0
             },
             min: -100,
             max: 100,
@@ -21,9 +17,9 @@ export default function Colliders()
         },
         transCollider:{
             value:{
-                x: 2,    
-                y: 0.2, 
-                z: 2
+                x: 0.5,    
+                y: 10, 
+                z: 60
             },
             min: -100,
             max: 100,
@@ -39,7 +35,6 @@ export default function Colliders()
 
     return <>
         <RigidBody 
-            ref={colliders} 
             type='fixed'
             colliders={false} 
             position={[0, 0, 0]}
@@ -129,11 +124,11 @@ export default function Colliders()
                             position={[-16.2, 1, -6.2]} />
             {/* Maisons */}
             <CuboidCollider args={[10, 9, 11.2]} 
-                            position={[-26.1, 1, 4.2]} />
+                            position={[-26.1, 7, 4.2]} />
             <CuboidCollider args={[10, 9, 11.2]} 
                             position={[-31.6, 0, -25.6]} 
                             rotation={[0, Math.PI * -0.16, 0]} />
-            <CuboidCollider args={[5, 9, 15]} 
+            <CuboidCollider args={[5, 4, 15]} 
                             position={[-10, 1, -24.9]} 
                             rotation={[0, Math.PI * 0.5, 0]} />
             {/* Chateau */}
@@ -160,7 +155,7 @@ export default function Colliders()
                             position={[25.2, 1.4, 18.2]}
                             rotation={[0, 0, Math.PI * -0.06]} />
             <CuboidCollider args={[1.7, 0.2, 2]} 
-                            position={[28.4, 0.5, 18.2]}
+                            position={[28.4, 0.45, 18.2]}
                             rotation={[0, 0, Math.PI * -0.12]} />
             {/* Barrieres */}
             <CuboidCollider args={[5, 0.3, 3]} 
@@ -196,11 +191,29 @@ export default function Colliders()
                             position={[-35.2, 8.3, -8.35]} />
             <CuboidCollider args={[1.8, 0.2, 2]} 
                             position={[-38.7, 8.45, -8.35]} />
-
-            <CuboidCollider args={[transCollider.x, transCollider.y, transCollider.z]} 
-                    position={[posCollider.z, posCollider.y, -posCollider.x]}
-                    rotation={[Math.PI * rotColliders, 0, 0]} 
+            <CuboidCollider args={[2, 0.2, 2]} 
+                    position={[-20.8, 0.2, -8.75]}
+            />
+            {/* World barrieres */}
+            <CuboidCollider args={[0.5, 30, 60]} 
+                    position={[50, 10, 5.75]}
                     />
+            <CuboidCollider args={[0.5, 30, 60]} 
+                    position={[-40, 10, 5.75]}
+                    />
+            <CuboidCollider args={[0.5, 30, 60]} 
+                    position={[0, 10, 50]}
+                    rotation={[0, Math.PI * 0.5, 0]}
+                    />
+            <CuboidCollider args={[0.5, 30, 60]} 
+                    position={[0, 10, -27]}
+                    rotation={[0, Math.PI * 0.5, 0]}
+                    />
+           
+            {/* <CuboidCollider args={[transCollider.x, transCollider.y, transCollider.z]} 
+                    position={[posCollider.z, posCollider.y, -posCollider.x]}
+                    rotation={[0, Math.PI * rotColliders, 0]} 
+                    /> */}
         </RigidBody>
     </>
 }

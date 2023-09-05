@@ -1,5 +1,5 @@
 import { MeshReflectorMaterial } from '@react-three/drei'
-import { useControls } from 'leva'
+// import { useControls } from 'leva'
 
 export default function Reflection()
 {
@@ -76,54 +76,47 @@ export default function Reflection()
 
     // })
 
+    // const { posCollider, rotColliders } = useControls('collider', {
+    //     posCollider:{
+    //         value:{
+    //             x: -28.7,
+    //             y: 16.5,
+    //             z: -19.5
+    //         },
+    //         min: -100,
+    //         max: 100,
+    //         step: 0.1
+    //     },
+    //     rotColliders:{
+    //         value : 0.25,
+    //         min: -1,
+    //         max: 1,
+    //         step: 0.01
+    //     }
+    // })
+
     return <>
-        {/* Big Appartement --> Right to left */}
-        <mesh position={[-24.16, 16.4, -29.5]} rotation-y={Math.PI * 0.5}>
-            <planeGeometry args={[10, 17]} />
-            <meshBasicMaterial color={'#1d1b1b'} />
-        </mesh>
-        <mesh position={[-28.7, 16.5, -19.5]} rotation-y={Math.PI * 0.25}>
+        <mesh position={[-23.5, 16.9, 30.2]} rotation-y={Math.PI * 0.75}>
             <planeGeometry args={[13.5, 17]} />
             <MeshReflectorMaterial
                 blur={[400, 100]}
                 mirror={0}
-                resolution={1024/2}
+                resolution={1024/4}
                 mixBlur={0.2}
                 mixStrength={15}
                 depthScale={1}
-                minDepthThreshold={0.6}
+                minDepthThreshold={0}
                 color="#151515"
                 metalness={0.5}
-                roughness={1}
+                roughness={0.5}
             />
         </mesh>
-
-        {/* Medium Appartement --> bottom to Up */}
-        <mesh position={[-45.2, 10.6, 0.4]} rotation-y={Math.PI * 0.5} >
-            <planeGeometry args={[13.5, 5]} />
-            <meshBasicMaterial color={'#1d1b1b'} />
-        </mesh>
-        <mesh position={[-47.4, 16.8, 0]} rotation-y={Math.PI * 0.5} >
-            <planeGeometry args={[12.7, 5]} />
-            <meshBasicMaterial color={'#1d1b1b'} />
-        </mesh>
-        
-        {/* Hotel --> right  to left */}
-        <mesh position={[-45.6, 10.5, 19.3]} rotation-y={Math.PI * 0.5} >
-            <planeGeometry args={[7.2, 10]} />
-            <meshBasicMaterial color={'#1d1b1b'} />
-        </mesh>
-        <mesh position={[-43.7, 7.6, 25.8]} rotation-y={Math.PI * 0.5} >
-            <planeGeometry args={[4, 15.5]} />
-            <meshBasicMaterial color={'#1d1b1b'} />
-        </mesh>
-
-        {/* Hotel --> right  to left */}
-        <mesh position={[-45.6, 10.5, 39.7]} rotation-y={Math.PI * 0.5} >
-            <planeGeometry args={[7.2, 10]} />
+        {/* <mesh position={[posCollider.x, posCollider.y, posCollider.z]} rotation-y={Math.PI * rotColliders}>
+            <planeGeometry args={[13.5, 17]} />
             <MeshReflectorMaterial
                 blur={[400, 100]}
-                resolution={1024/2}
+                mirror={0}
+                resolution={1024}
                 mixBlur={0.2}
                 mixStrength={15}
                 depthScale={1}
@@ -132,10 +125,6 @@ export default function Reflection()
                 metalness={0.5}
                 roughness={1}
             />
-        </mesh>
-        <mesh position={[-43.7, 7.6, 32.8]} rotation-y={Math.PI * 0.5} >
-            <planeGeometry args={[4, 15.5]} />
-            <meshBasicMaterial color={'#1d1b1b'} />
-        </mesh>
+        </mesh> */}
     </>
 }

@@ -1,16 +1,15 @@
 import { MeshReflectorMaterial, useTexture } from "@react-three/drei"
 import { RigidBody } from '@react-three/rapier'
 import { useControls } from "leva"
-import * as THREE from 'three'
 
 export default function Ground()
 {
+ 
     const props = useTexture({
-        map: './ground/diff.jpg',
-        roughnessMap: './ground/roughness.jpg',
+        map: './ground/bakedRoad.jpg',
+        roughnessMap: './ground/bakedRoad_Roughness.jpg',
     })
 
-    props.map.encoding = THREE.sRGBEncoding
     //leva
     const val = useControls('Reflection', {
         valBlur:{
@@ -32,7 +31,7 @@ export default function Ground()
             min: 256,
             max: 1000,
             step: 1,
-            value: 256 * 4
+            value: 1054
         },
         mixBlur:{
             min: 0,
@@ -92,10 +91,8 @@ export default function Ground()
     })
     return <>
         <RigidBody type={'fixed'}>
-            {/* <pointLight intensity={10} color={'red'} /> */}
-            <mesh rotation={[- Math.PI * 0.5, 0, 0]} position={[0, -0.5, 5]}>
-                <boxGeometry args={[108, 101, 1]} />
-                <meshBasicMaterial color={'black'}/>
+            <mesh rotation={[- Math.PI * 0.5, 0, Math.PI * 0.5]} position={[0, -1, 5]}  >
+                <boxGeometry args={[108, 101, 2]} />
                 <MeshReflectorMaterial
                     blur={[val.valBlur.x, val.valBlur.y]} // Blur ground reflections (width, heigt), 0 skips blur
                     {...props}
