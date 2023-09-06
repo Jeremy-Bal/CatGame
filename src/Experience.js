@@ -46,10 +46,10 @@ export default function Experience()
                         <Ground />
                         <Game />
                     </Physics>
-                    {/* <Effect /> */}
+                    <Effect />
                     <Emissions />
                     <Lights />
-                    {/* <Reflection /> */}
+                    <Reflection />
                     {/* <Environment preset="warehouse" /> */}
                 </Suspense>
             </group>

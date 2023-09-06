@@ -5,7 +5,7 @@ export default function ()
 
     return <>
         <EffectComposer>
-            {/* <Bloom mipmapBlur intensity={1}  /> */}
+            <Bloom mipmapBlur intensity={0.6}  />
             <Vignette offset={0.8} 
             darkness={0.8}
             opacity={0.7}

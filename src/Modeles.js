@@ -1,5 +1,5 @@
-import {useGLTF, useTexture, useVideoTexture } from "@react-three/drei"
-import { useEffect, useRef } from "react"
+import {PositionalAudio, useGLTF, useTexture, useVideoTexture } from "@react-three/drei"
+import { useEffect, useRef, useState } from "react"
 import useGame from "./Utils/useGame"
 
 export default function Modeles()
@@ -9,7 +9,9 @@ export default function Modeles()
     const video = useVideoTexture('./videoHxH.mp4')
 
     const catImages = useRef()
-    
+
+    const [currentReady, setReady] = useState(false)
+
     useEffect(()=>{
         //I subscribe to phase event if value change 
         const unsubscribePhase = useGame.subscribe(
@@ -17,6 +19,11 @@ export default function Modeles()
             (value)=>{
                 if(value === 'end'){
                     catImages.current.visible = true
+                }
+                if(value === 'playing'){
+                    setTimeout(()=>{
+                        setReady(true)
+                    }, 1000)
                 }
             }
         )
@@ -26,6 +33,8 @@ export default function Modeles()
         }
     })
     return <>
+        {currentReady && <PositionalAudio url={'themeMusic.mp3'} distance={3} loop autoplay position={[-7, 4, 1]} />}
+
         <mesh position={[-24.5, 15, 20.45]} rotation={[0, Math.PI * 0.5, 0]}>
             <planeGeometry args={[6.8, 11.5]} />
             <meshBasicMaterial map={video} toneMapped={false} />

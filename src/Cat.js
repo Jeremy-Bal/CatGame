@@ -40,7 +40,10 @@ export default function Cat()
 
     const endGame = useGame((state)=> state.end)
 
-    useFrame((state)=>{
+    //sound
+    const patouneSound = new Audio('patouneSound.wav')
+
+    useFrame((state, delta)=>{
         //Introduction travel camera
         if(currentIntro){
             cameraPosition.copy(catCollider.current.translation())
@@ -53,9 +56,9 @@ export default function Cat()
             target.y += 3.32
             target.z += 0.64
             
-            lerpTarget.lerp(target, 0.025)
+            lerpTarget.lerp(target, 0.025 * delta * 50)
 
-            state.camera.position.lerp(cameraPosition, 0.025)
+            state.camera.position.lerp(cameraPosition, 0.025 * delta * 50)
             state.camera.lookAt(lerpTarget)
 
 
@@ -82,9 +85,10 @@ export default function Cat()
         return ()=>{
             unsubscribePhase()
         }
-    })
+    }, [])
 
     //setting position and rotation once at the start
+    //and sound
     const {camera} = useThree()
     useEffect(()=>{
         cameraPosition.copy(catCollider.current.translation())
@@ -106,6 +110,7 @@ export default function Cat()
         quaternionRotation.setFromEuler(eulerRotation)
         
         catCollider.current.setRotation(quaternionRotation)
+
     }, [])
 
     //Control all inputs and set animation
@@ -220,8 +225,8 @@ export default function Cat()
         if(currentPhase === 'playing' && !currentIntro)
         {
             const lerpQuaternion = 0.1 * delta * 60
-            const catSpeed = 10 * delta
-            // const catSpeed = 4 * delta
+            // const catSpeed = 10 * delta
+            const catSpeed = 4 * delta
 
             //Following camera
             cameraPosition.copy(catCollider.current.translation())
@@ -358,9 +363,13 @@ export default function Cat()
 
     //Function called when cat traverse every "patoune"
     useEffect(()=>{
-        const score = document.querySelector('.score span')
-        score.innerHTML = 32 - currentScore
+        if(currentPhase === 'playing'){
+            const score = document.querySelector('.score span')
+            score.innerHTML = 32 - currentScore
 
+            patouneSound.volume = 0.05
+            patouneSound.play()
+        }
         if(currentScore === 32 ){
             endGame()
             document.querySelector('.endGame').classList.add('show')
