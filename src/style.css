@@ -1,3 +1,11 @@
+@font-face {
+    font-family: newFantasy;
+    src: url('../public/Frozito-eZ99g.ttf');
+}
+@font-face {
+    font-family: Ringbearer;
+    src: url('../public/RingbearerMedium-51mgZ.ttf');
+}
 html,
 body,
 #root
@@ -18,14 +26,15 @@ canvas{
 }
 *{
     color: #fff;
-    font-family: fantasy;
+    font-family: Ringbearer;
 }
 .white{
     color: #fff;
 }
 .title{
     letter-spacing: 0.1rem;
-    font-size: 30px;
+    font-size: 35px;
+    font-family: newFantasy;
     position: relative;
     top: -30px;
 }
@@ -40,18 +49,22 @@ canvas{
     top: 50%;
     transform: translateY(-50%);
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    margin-top: 100px;
+}
+.desc{
+    letter-spacing: 0.1rem;
+    font-size: 18px;
 }
 button{
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    padding: 4px 100px;
-    padding-top: 10px;
+    padding: 10px 100px;
     border: 0;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
+    letter-spacing: 0.2rem;
 }
 img{
     height: 100px;
@@ -101,6 +114,7 @@ img{
     position: absolute;
     top: 50%;
     opacity: 0;
+    pointer-events: none;
     text-align: center;
     z-index: 10;
     width: 100%;

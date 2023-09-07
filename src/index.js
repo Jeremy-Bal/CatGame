@@ -14,11 +14,10 @@ const root = createRoot(document.querySelector('#root'))
 
 root.render(
     <>
-        <Leva /* collapsed */ />
+        <Leva collapsed />
         <Menu />
         <Canvas
             camera={{
-                /* position: [ 125, 100, 100 ], */
                 near: 1,
                 far: 100,
                 fov: 60
@@ -29,7 +28,7 @@ root.render(
                 alpha: true,
              
             }}>
-                <Perf position="top-left" />
+                {/* <Perf position="top-left" /> */}
                 <Experience />
         </Canvas>
 

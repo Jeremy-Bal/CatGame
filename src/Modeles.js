@@ -6,9 +6,11 @@ export default function Modeles()
 {
     const [ neige_1, neige_2, baked_1, baked_2, baked_3 ] = useTexture(['./neige.png', './neige2.png', './modeles/baked_1.jpg', './modeles/baked_2.jpg', './modeles/threeBaked.jpg'])
     const [ gameWorld_1, gameWorld_2, gameWorld_3 ] = useGLTF(['./modeles/gameWorld_1.glb','./modeles/gameWorld_2.glb', './modeles/gameWorld_3.glb'])
-    const video = useVideoTexture('./videoHxH.mp4')
+    const hxhVideo = useVideoTexture('./videoHxH.mp4')
+    const neigeVid = useVideoTexture('./neigeVid.mp4')
 
-    const catImages = useRef()
+    const catImagesRef = useRef()
+    const hxhVideoRef = useRef()
 
     const [currentReady, setReady] = useState(false)
 
@@ -18,7 +20,8 @@ export default function Modeles()
             (state)=>state.phase,
             (value)=>{
                 if(value === 'end'){
-                    catImages.current.visible = true
+                    catImagesRef.current.visible = true
+                    hxhVideoRef.current.visible = false
                 }
                 if(value === 'playing'){
                     setTimeout(()=>{
@@ -35,10 +38,11 @@ export default function Modeles()
     return <>
         {currentReady && <PositionalAudio url={'themeMusic.mp3'} distance={3} loop autoplay position={[-7, 4, 1]} />}
 
-        <mesh position={[-24.5, 15, 20.45]} rotation={[0, Math.PI * 0.5, 0]}>
+        <mesh position={[-24.5, 15, 20.45]} rotation={[0, Math.PI * 0.5, 0]} visible={true} ref={hxhVideoRef}>
             <planeGeometry args={[6.8, 11.5]} />
-            <meshBasicMaterial map={video} toneMapped={false} />
+            <meshBasicMaterial map={hxhVideo} toneMapped={false} />
         </mesh>
+        
         <mesh geometry={gameWorld_1.nodes.gameModele_1.geometry} >
             <meshBasicMaterial map={baked_1} map-flipY="false"/>
         </mesh>
@@ -50,7 +54,11 @@ export default function Modeles()
             <meshBasicMaterial map={baked_3} map-flipY="false"/>
         </mesh>
 
-        <group visible={false} ref={catImages}>
+        <group visible={false} ref={catImagesRef}>
+            <mesh position={[-24.5, 15, 20.45]} rotation={[0, Math.PI * 0.5, 0]}>
+                <planeGeometry args={[6.8, 11.5]} />
+                <meshBasicMaterial map={neigeVid} toneMapped={false} />
+            </mesh>
             <mesh rotation={[ 0, Math.PI * 0.5, 0]} position={[-16.3, 2, 11.5]}>
                 <planeGeometry args={[8, 5]} />
                 <meshBasicMaterial transparent map={neige_1}/>

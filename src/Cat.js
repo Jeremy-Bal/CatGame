@@ -367,10 +367,10 @@ export default function Cat()
             const score = document.querySelector('.score span')
             score.innerHTML = 32 - currentScore
 
-            patouneSound.volume = 0.05
+            patouneSound.volume = 0.035
             patouneSound.play()
         }
-        if(currentScore === 32 ){
+        if(currentScore === 2 ){
             endGame()
             document.querySelector('.endGame').classList.add('show')
             

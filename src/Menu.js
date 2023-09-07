@@ -12,6 +12,7 @@ export default function Menu ()
                 <img src="./logo.png" />
             </div>
             <p className="title">Neige</p>
+            <p className="desc">{`Find all items 'patoune' and get an extraordinary reward`}</p>
             <button onClick={()=>{
                 start()
                 setHide(true)
