@@ -36,13 +36,16 @@ export default function Modeles()
         }
     })
     return <>
+        {/* Sound env */}
         {currentReady && <PositionalAudio url={'themeMusic.mp3'} distance={1} loop autoplay position={[-7, 4, 1]} />}
 
+        {/* Video */}
         <mesh position={[-24.5, 15, 20.45]} rotation={[0, Math.PI * 0.5, 0]} visible={true} ref={hxhVideoRef}>
             <planeGeometry args={[6.8, 11.5]} />
             <meshBasicMaterial map={hxhVideo} toneMapped={false} />
         </mesh>
 
+        {/* Modeles bulding */}
         <mesh geometry={gameWorld_1.nodes.gameModele_1.geometry} >
             <meshBasicMaterial map={baked_1} map-flipY="false"/>
         </mesh>
@@ -54,6 +57,17 @@ export default function Modeles()
             <meshBasicMaterial map={baked_3} map-flipY="false"/>
         </mesh>
 
+        {/* Additional walls */}
+        <mesh position={[9.9, 11, 43]} rotation-y={Math.PI * 1}>
+            <planeGeometry args={[7.5, 10]} /> 
+            <meshMatcapMaterial color={"#333"}/>
+        </mesh>
+        <mesh position={[30, 11, 43]} rotation-y={Math.PI * 1}>
+            <planeGeometry args={[7.5, 10]} /> 
+            <meshMatcapMaterial color={"#333"}/>
+        </mesh>
+
+        {/* End game */}
         <group visible={false} ref={catImagesRef}>
             <mesh position={[-24.5, 15, 20.45]} rotation={[0, Math.PI * 0.5, 0]}>
                 <planeGeometry args={[6.8, 11.5]} />

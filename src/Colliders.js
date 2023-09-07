@@ -1,37 +1,37 @@
 import { RigidBody, CuboidCollider } from '@react-three/rapier'
-import { useControls } from "leva";
+// import { useControls } from "leva";
 
 
 export default function Colliders()
 {
-    const { posCollider, transCollider, rotColliders } = useControls('collider', {
-        posCollider:{
-            value:{
-                x: -1.1,
-                y: 4.7,
-                z: 24.4
-            },
-            min: -100,
-            max: 100,
-            step: 0.1
-        },
-        transCollider:{
-            value:{
-                x: 0.5,    
-                y: 5, 
-                z: 20
-            },
-            min: -100,
-            max: 100,
-            step: 0.1
-        },
-        rotColliders:{
-            value : 0.5,
-            min: -1,
-            max: 1,
-            step: 0.01
-        }
-    })
+    // const { posCollider, transCollider, rotColliders } = useControls('collider', {
+    //     posCollider:{
+    //         value:{
+    //             x: -1.1,
+    //             y: 4.7,
+    //             z: 24.4
+    //         },
+    //         min: -100,
+    //         max: 100,
+    //         step: 0.1
+    //     },
+    //     transCollider:{
+    //         value:{
+    //             x: 0.5,    
+    //             y: 5, 
+    //             z: 20
+    //         },
+    //         min: -100,
+    //         max: 100,
+    //         step: 0.1
+    //     },
+    //     rotColliders:{
+    //         value : 0.5,
+    //         min: -1,
+    //         max: 1,
+    //         step: 0.01
+    //     }
+    // })
 
     return <>
         <RigidBody 

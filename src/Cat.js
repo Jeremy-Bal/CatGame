@@ -48,7 +48,7 @@ export default function Cat()
         if(currentIntro){
             cameraPosition.copy(catCollider.current.translation())
             cameraPosition.z += 1
-            cameraPosition.y += 6
+            cameraPosition.y += 7
             cameraPosition.x += 11
             
             target.copy(catCollider.current.translation())
@@ -63,7 +63,7 @@ export default function Cat()
 
 
             //when travel reach the end I sent camera coordinates and change boolean intro
-            if(currentAnimation && lerpTarget.y < 4){
+            if(currentAnimation && lerpTarget.y < 3.9){
                 setSmoothedCameraPosition(state.camera.position)
                 setSmoothedCameraTarget(lerpTarget)
                 setIntro(false)
@@ -154,7 +154,6 @@ export default function Cat()
                             //If user jump
                             if(jump){
                                 if(hit && hit.toi < 0.15){
-                                    console.log(hit, hit.toi);
                                     setCurrentAnimation('sautUp')
                                     action.setLoop(LoopOnce)
         
@@ -195,18 +194,13 @@ export default function Cat()
                 y: 7,
                 z: 11
             },
-           /*  value:{
-                x: 1,
-                y: 2,
-                z: 4
-            }, */
             min: -100,
             max: 100,
             step: 1
         },
         posCAT:{
             value:{
-                x: 40,
+                x: 39,
                 y: 4,
                 z: 19
             },
@@ -220,6 +214,7 @@ export default function Cat()
     const eulerRotation = new Euler(0, 0, 0)
     const quaternionRotation = new Quaternion()
 
+    
     //CatControls
     useFrame((state, delta)=>{
         if(currentPhase === 'playing' && !currentIntro)
@@ -240,7 +235,6 @@ export default function Cat()
                 cameraPosition.y += pos.y
                 cameraPosition.x += pos.z
             }
-
             target.copy(catCollider.current.translation())
             target.x += -0.31
             target.y += 3.32

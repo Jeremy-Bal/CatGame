@@ -2,7 +2,7 @@ import { Loader } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { createRoot } from 'react-dom/client'
 import { Leva } from 'leva'
-import { Perf } from "r3f-perf"
+/* import { Perf } from "r3f-perf" */
 
 import Menu from './Menu'
 
@@ -14,7 +14,7 @@ const root = createRoot(document.querySelector('#root'))
 
 root.render(
     <>
-        <Leva collapsed />
+        <Leva collapsed hidden />
         <Menu />
         <Canvas
             camera={{
