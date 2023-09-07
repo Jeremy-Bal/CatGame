@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import { Center, Environment, KeyboardControls, Sparkles, Stars } from "@react-three/drei"
+import { Center, KeyboardControls, Sparkles, Stars } from "@react-three/drei"
 
 import Lights from "./Lights"
 import Effect from "./Effect"
@@ -24,7 +24,6 @@ export default function Experience()
     }
 
     return <>
-        {/* <fog attach="fog" args={['#1d1d1d', 50, 80]} /> */}
         <KeyboardControls map={ [
             { name: 'forward', keys: [ 'ArrowUp', 'KeyW' ] },
             { name: 'backward', keys: [ 'ArrowDown', 'KeyS' ] },
@@ -50,7 +49,6 @@ export default function Experience()
                     <Emissions />
                     <Lights />
                     <Reflection />
-                    {/* <Environment preset="warehouse" /> */}
                 </Suspense>
             </group>
         </Center>

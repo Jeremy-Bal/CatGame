@@ -7,26 +7,26 @@ export default function Colliders()
     const { posCollider, transCollider, rotColliders } = useControls('collider', {
         posCollider:{
             value:{
-                x: -5.75,
-                y: 0.2,
-                z: 0
+                x: -1.1,
+                y: 4.7,
+                z: 24.4
             },
             min: -100,
             max: 100,
-            step: 0.05
+            step: 0.1
         },
         transCollider:{
             value:{
                 x: 0.5,    
-                y: 10, 
-                z: 60
+                y: 5, 
+                z: 20
             },
             min: -100,
             max: 100,
             step: 0.1
         },
         rotColliders:{
-            value : 0,
+            value : 0.5,
             min: -1,
             max: 1,
             step: 0.01
@@ -196,7 +196,7 @@ export default function Colliders()
             />
             {/* World barrieres */}
             <CuboidCollider args={[0.5, 30, 60]} 
-                    position={[50, 10, 5.75]}
+                    position={[41.2, 10, 5.75]}
                     />
             <CuboidCollider args={[0.5, 30, 60]} 
                     position={[-40, 10, 5.75]}
@@ -209,8 +209,12 @@ export default function Colliders()
                     position={[0, 10, -27]}
                     rotation={[0, Math.PI * 0.5, 0]}
                     />
+            <CuboidCollider args={[0.5, 5, 20]} 
+                    position={[24.4, 4.7, -1.1]}
+                    rotation={[0, Math.PI * 0.5, 0]}
+                    />
            
-            {/* <CuboidCollider args={[transCollider.x, transCollider.y, transCollider.z]} 
+          {/*   <CuboidCollider args={[transCollider.x, transCollider.y, transCollider.z]} 
                     position={[posCollider.z, posCollider.y, -posCollider.x]}
                     rotation={[0, Math.PI * rotColliders, 0]} 
                     /> */}

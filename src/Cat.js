@@ -192,7 +192,7 @@ export default function Cat()
         pos:{
             value:{
                 x: 1,
-                y: 6,
+                y: 7,
                 z: 11
             },
            /*  value:{
@@ -367,10 +367,10 @@ export default function Cat()
             const score = document.querySelector('.score span')
             score.innerHTML = 32 - currentScore
 
-            patouneSound.volume = 0.035
+            patouneSound.volume = 0.015
             patouneSound.play()
         }
-        if(currentScore === 2 ){
+        if(currentScore === 32 ){
             endGame()
             document.querySelector('.endGame').classList.add('show')
             

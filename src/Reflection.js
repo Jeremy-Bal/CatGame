@@ -101,7 +101,7 @@ export default function Reflection()
             <MeshReflectorMaterial
                 blur={[400, 100]}
                 mirror={0}
-                resolution={1024/4}
+                resolution={1024/2}
                 mixBlur={0.2}
                 mixStrength={15}
                 depthScale={1}

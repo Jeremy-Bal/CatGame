@@ -36,13 +36,13 @@ export default function Modeles()
         }
     })
     return <>
-        {currentReady && <PositionalAudio url={'themeMusic.mp3'} distance={3} loop autoplay position={[-7, 4, 1]} />}
+        {currentReady && <PositionalAudio url={'themeMusic.mp3'} distance={1} loop autoplay position={[-7, 4, 1]} />}
 
         <mesh position={[-24.5, 15, 20.45]} rotation={[0, Math.PI * 0.5, 0]} visible={true} ref={hxhVideoRef}>
             <planeGeometry args={[6.8, 11.5]} />
             <meshBasicMaterial map={hxhVideo} toneMapped={false} />
         </mesh>
-        
+
         <mesh geometry={gameWorld_1.nodes.gameModele_1.geometry} >
             <meshBasicMaterial map={baked_1} map-flipY="false"/>
         </mesh>

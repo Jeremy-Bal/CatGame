@@ -138,7 +138,7 @@ export default function Game ()
                         <meshMatcapMaterial color={'#d8a45f'} />
                     </mesh>
                 </CuboidCollider>
-                <CuboidCollider name="active" args={[0.7, 0.7, 0.7]} position={[-38, 10, -6]}>
+                <CuboidCollider name="active" args={[0.7, 0.7, 0.7]} position={[-38, 9, -6.5]}>
                      <mesh rotation={[0, Math.PI * patouneRotation, 0]} scale={0.5} geometry={patoune.nodes.patoune.geometry}>
                         <meshMatcapMaterial color={'#d8a45f'} />
                     </mesh>

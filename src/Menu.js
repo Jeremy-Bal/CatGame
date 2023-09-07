@@ -19,7 +19,7 @@ export default function Menu ()
                 }} >Ready ?</button>
         </div>
         <div className="score">
-            <p>Patoune left : <span>32</span></p>
+            <p>Patounes left : <span>32</span></p>
         </div>
         <div className={'endGame'}>
             <p>Great job ! You just end the game.. <br />
