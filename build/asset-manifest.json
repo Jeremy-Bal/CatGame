@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0c1030b3.css",
+    "main.js": "/static/js/main.ab975e9a.js",
+    "static/media/RingbearerMedium-51mgZ.ttf": "/static/media/RingbearerMedium-51mgZ.81688da96bd2ba917e09.ttf",
+    "static/media/Frozito-eZ99g.ttf": "/static/media/Frozito-eZ99g.0390cc5b8522dd4315f7.ttf",
+    "index.html": "/index.html",
+    "main.0c1030b3.css.map": "/static/css/main.0c1030b3.css.map",
+    "main.ab975e9a.js.map": "/static/js/main.ab975e9a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0c1030b3.css",
+    "static/js/main.ab975e9a.js"
+  ]
+}
