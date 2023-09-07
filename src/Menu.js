@@ -23,7 +23,8 @@ export default function Menu ()
         </div>
         <div className={'endGame'}>
             <p>Great job ! You just end the game.. <br />
-            You can now find some pictures of my cat in all map</p>
+            Now you can see the real snow</p>
+            <p>Thank you for playing </p>
         </div>
     </>
 }
