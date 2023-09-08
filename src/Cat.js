@@ -48,7 +48,7 @@ export default function Cat()
         if(currentIntro){
             cameraPosition.copy(catCollider.current.translation())
             cameraPosition.z += 1
-            cameraPosition.y += 7
+            cameraPosition.y += 8
             cameraPosition.x += 11
             
             target.copy(catCollider.current.translation())
@@ -191,7 +191,7 @@ export default function Cat()
         pos:{
             value:{
                 x: 1,
-                y: 7,
+                y: 8,
                 z: 11
             },
             min: -100,
@@ -227,8 +227,9 @@ export default function Cat()
             cameraPosition.copy(catCollider.current.translation())
             if(currentTravelCamera)
             {
-                cameraPosition.z += -10
-                cameraPosition.y += 27
+                
+                cameraPosition.z += -15
+                cameraPosition.y += 35
                 cameraPosition.x += 24
             }else{
                 cameraPosition.z += pos.x
@@ -399,7 +400,7 @@ return <>
             <CuboidCollider 
                 sensor
                 args={[10, 8, 0.1]}
-                position={[-7, 1, 1]}
+                position={[-7, 1, 7]}
                 onIntersectionEnter={()=>{
                     setTravelCamera(!currentTravelCamera)
                 }}

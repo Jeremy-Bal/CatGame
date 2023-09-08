@@ -15,10 +15,6 @@ import Colliders from './Colliders'
 
 export default function Experience()
 {
-    // const { color } = useControls('FOG', {
-    //     color: '#f00'
-    // })
-
     const show = ()=>{
         document.querySelector('.column').classList.add('show')
     }

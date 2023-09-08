@@ -132,7 +132,7 @@ export default function Colliders()
                             position={[-10, 1, -24.9]} 
                             rotation={[0, Math.PI * 0.5, 0]} />
             {/* Chateau */}
-            <CuboidCollider args={[13.5, 9, 13.5]} 
+            <CuboidCollider args={[19, 9, 19]} 
                             position={[17.5, 1, -11.8]} />
             <CuboidCollider args={[0.5, 9, 0.5]} 
                             position={[34.4, 1, 4.3]} />
@@ -210,7 +210,7 @@ export default function Colliders()
                     rotation={[0, Math.PI * 0.5, 0]}
                     />
             <CuboidCollider args={[0.5, 5, 20]} 
-                    position={[24.4, 4.7, -1.1]}
+                    position={[24.4, 4.7, 6.7]}
                     rotation={[0, Math.PI * 0.5, 0]}
                     />
            
