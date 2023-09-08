@@ -28,26 +28,26 @@ export default function Experience()
             { name: 'shift', keys: [ 'Shift' ] },
             { name: 'jump', keys: [ 'Space' ] },
         ] }>
-        <Center>
-            <group>
-                <Suspense fallback={show()}>
-                    <Stars radius={1} depth={50} count={1000} factor={2} saturation={0} fade speed={3} />
-                    <Sparkles count={100} scale={[10, 7, 30]} size={20} position={[-10, 5, 0]} opacity={0.2} speed={0.3}/>
-                    <Physics gravity={[0, -20, 0]}>
-                        {/* <Debug /> */}
-                        <Cat />
-                        <Colliders />
-                        <Modeles />
-                        <Ground />
-                        <Game />
-                    </Physics>
-                    <Effect />
-                    <Emissions />
-                    <Lights />
-                    <Reflection />
-                </Suspense>
-            </group>
-        </Center>
+            <Center>
+                <group>
+                    <Suspense fallback={show()}>
+                        <Stars radius={1} depth={50} count={1000} factor={2} saturation={0} fade speed={3} />
+                        <Sparkles count={100} scale={[10, 7, 30]} size={20} position={[-10, 5, 0]} opacity={0.2} speed={0.3}/>
+                        <Physics gravity={[0, -20, 0]}>
+                            {/* <Debug /> */}
+                            <Cat />
+                            <Colliders />
+                            <Modeles />
+                            <Ground />
+                            <Game />
+                        </Physics>
+                        <Effect />
+                        <Emissions />
+                        <Lights />
+                        <Reflection />
+                    </Suspense>
+                </group>
+            </Center>
         </KeyboardControls>
     </>
 }

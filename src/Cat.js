@@ -115,75 +115,75 @@ export default function Cat()
 
     //Control all inputs and set animation
     useEffect(()=>{
-            //Animations
-            action.reset().fadeIn(0.5).play()
-            action.setLoop(LoopRepeat)
+        //Animations
+        action.reset().fadeIn(0.5).play()
+        action.setLoop(LoopRepeat)
+
+        //This condition is used to simulate walk if user jump and hold  z || w
+        if(currentAnimation === 'sautUp'){
+            setTimeout(()=>{
+                action.setLoop(LoopRepeat)
+                isCurrentRunning ? setCurrentAnimation('Course') : setCurrentAnimation('Marche') 
+            }, 1200)
+        }
+
+        //keyboardControl
+        const unsubcribeWalk = sub(
+            (state)=>(state),
+            (value)=>{
+                const { backward, forward, jump, leftward, rightward, shift} = value
+                
+                //RAYCAST used to know the distance from the floor
+                //set origin
+                const origin = catCollider.current.translation()
+                origin.y -= 0.51
+
+                //set direction to cast
+                const direction = { x: 0, y: -1, z:0 }
+
+                //set raycast
+                const ray = new rapier.Ray(origin, direction)
+
+                //associate raycast with rapierWorld
+                const hit = rapierWorld.castRay(ray, 5, true)
+                
+                //If user press any key
+                if(forward || leftward || rightward || backward || jump){
+                    if(currentPhase === 'playing' && !currentIntro)
+                    {
+                        //If user jump
+                        if(jump){
+                            if(hit && hit.toi < 0.15){
+                                setCurrentAnimation('sautUp')
+                                action.setLoop(LoopOnce)
     
-            //This condition is used to simulate walk if user jump and hold  z || w
-            if(currentAnimation === 'sautUp'){
-                setTimeout(()=>{
-                    action.setLoop(LoopRepeat)
-                    isCurrentRunning ? setCurrentAnimation('Course') : setCurrentAnimation('Marche') 
-                }, 1200)
-            }
-    
-            //keyboardControl
-            const unsubcribeWalk = sub(
-                (state)=>(state),
-                (value)=>{
-                    const { backward, forward, jump, leftward, rightward, shift} = value
-                    
-                    //RAYCAST used to know the distance from the floor
-                    //set origin
-                    const origin = catCollider.current.translation()
-                    origin.y -= 0.51
-
-                    //set direction to cast
-                    const direction = { x: 0, y: -1, z:0 }
-
-                    //set raycast
-                    const ray = new rapier.Ray(origin, direction)
-
-                    //associate raycast with rapierWorld
-                    const hit = rapierWorld.castRay(ray, 5, true)
-                    
-                    //If user press any key
-                    if(forward || leftward || rightward || backward || jump){
-                        if(currentPhase === 'playing' && !currentIntro)
-                        {
-                            //If user jump
-                            if(jump){
-                                if(hit && hit.toi < 0.15){
-                                    setCurrentAnimation('sautUp')
-                                    action.setLoop(LoopOnce)
-        
-                                    //impulse up
-                                    catCollider.current.applyImpulse({ x: 0, y: 25, z:0 })
-                                }
+                                //impulse up
+                                catCollider.current.applyImpulse({ x: 0, y: 25, z:0 })
                             }
-                            //or walking
-                            if(forward || leftward || rightward || backward){
-                                //if is not on the air
-                                if(hit && hit.toi < 0.15){
-                                    //run or not
-                                    if(shift && currentAnimation != 'Course'){
-                                        setCurrentAnimation('Course')
-                                        setIsCurrentRunning(true)
-                                    }else if(!shift && currentAnimation != 'Marche'){
-                                        setCurrentAnimation('Marche')
-                                        setIsCurrentRunning(false)
-                                    }
+                        }
+                        //or walking
+                        if(forward || leftward || rightward || backward){
+                            //if is not on the air
+                            if(hit && hit.toi < 0.15){
+                                //run or not
+                                if(shift && currentAnimation != 'Course'){
+                                    setCurrentAnimation('Course')
+                                    setIsCurrentRunning(true)
+                                }else if(!shift && currentAnimation != 'Marche'){
+                                    setCurrentAnimation('Marche')
+                                    setIsCurrentRunning(false)
                                 }
                             }
                         }
                     }
                 }
-            )
-    
-            return () => {
-                unsubcribeWalk()
-                action.fadeOut(0.5)
             }
+        )
+
+        return () => {
+            unsubcribeWalk()
+            action.fadeOut(0.5)
+        }
 
     }, [currentAnimation, currentIntro])
     
@@ -202,11 +202,11 @@ export default function Cat()
             value:{
                 x: 39,
                 y: 4,
-                z: 19
+                z: 18.45
             },
             min: -100,
             max: 100,
-            step: 2
+            step: 0.01
         },
     })
 

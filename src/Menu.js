@@ -14,8 +14,10 @@ export default function Menu ()
             <p className="title">Neige</p>
             <p className="desc">{`Find all items 'patoune' and get an extraordinary reward`}</p>
             <button onClick={()=>{
-                start()
-                setHide(true)
+                setTimeout(()=>{
+                    start()
+                    setHide(true)
+                }, 300)
                 }} >Ready ?</button>
         </div>
         <div className="score">

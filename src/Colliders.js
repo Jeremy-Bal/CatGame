@@ -149,13 +149,13 @@ export default function Colliders()
                             position={[19.3, 0.2, 18.2]}
                             rotation={[0, 0, Math.PI * 0.12]} />
             <CuboidCollider args={[1.7, 0.2, 2]} 
-                            position={[21.9, 1, 18.2]}
+                            position={[22.1, 1, 18.2]}
                             rotation={[0, 0, Math.PI * 0.12]} />
             <CuboidCollider args={[1.7, 0.2, 2]} 
-                            position={[25.2, 1.4, 18.2]}
+                            position={[25.2, 1.35, 18.2]}
                             rotation={[0, 0, Math.PI * -0.06]} />
             <CuboidCollider args={[1.7, 0.2, 2]} 
-                            position={[28.4, 0.45, 18.2]}
+                            position={[28.5, 0.45, 18.2]}
                             rotation={[0, 0, Math.PI * -0.12]} />
             {/* Barrieres */}
             <CuboidCollider args={[5, 0.3, 3]} 
